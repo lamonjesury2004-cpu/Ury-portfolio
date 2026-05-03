@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urydessy La Monjes — Creative Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b9d;
+            --primary-dark: #e91e63;
+            --secondary: #c44569;
+            --accent: #f8b500;
+            --dark: #2d3436;
+            --light: #fff5f7;
+            --cream: #fef9f3;
+            --text: #4a4a4a;
+            --text-light: #7f8c8d;
+            --shadow: 0 10px 40px rgba(255, 107, 157, 0.15);
+            --shadow-hover: 0 20px 60px rgba(255, 107, 157, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Animated Background */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-shapes .shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-shapes .shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            top: 50%;
+            right: -50px;
+            animation-delay: 5s;
+        }
+
+        .bg-shapes .shape:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: var(--secondary);
+            bottom: -50px;
+            left: 30%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 157, 0.1);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-dark);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 5% 4rem;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+            display: block;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            box-shadow: var(--shadow);
+            animation: morph 8s ease-in-out infinite;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            animation: float-badge 3s ease-in-out infinite;
+        }
+
+        .floating-badge:nth-child(2) {
+            top: 10%;
+            right: 0;
+            animation-delay: 0.5s;
+        }
+
+        .floating-badge:nth-child(3) {
+            bottom: 20%;
+            left: -10%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float-badge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 2rem auto;
+            box-shadow: var(--shadow);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: var(--light);
+            color: var(--primary-dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            object-fit: cover;
+            aspect-ratio: 1;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            border: 1px solid rgba(255, 107, 157, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 2rem auto;
+            box-shadow: var(--shadow);
+        }
+
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary-dark);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+            background: var(--cream);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 2rem 1rem 1rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .portfolio-overlay p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 5rem 5%;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact > p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            box-shadow: 0 5px 20px rgba(225, 48, 108, 0.3);
+        }
+
+        .social-btn.email {
+            background: var(--dark);
+            color: white;
+            box-shadow: 0 5px 20px rgba(45, 52, 54, 0.3);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .social-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 107, 157, 0.1);
+        }
+
+        footer .heart {
+            color: var(--primary);
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                max-width: 100%;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                max-width: 280px;
+            }
+
+            .floating-badge {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio {
+                padding: 2rem;
+            }
+
+            .about {
+                padding: 2rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Shapes -->
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Ury.</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Your Content, <span>Polished.</span></h1>
+                <p class="tagline">Your Time, Saved.</p>
+                <p>Helping YouTubers and small brands with video editing, Canva design, PowerPoint, email, and more. No corporate stiffness — just a friendly creative who genuinely wants to make you look good.</p>
+                <div class="cta-group">
+                    <a href="#portfolio" class="btn btn-primary">View My Work ↓</a>
+                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="17581.png" alt="Urydessy La Monjes">
+                <div class="floating-badge">🎨 Creative VA</div>
+                <div class="floating-badge">⭐ Fast Learner</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>About Me</h3>
+                <p>Hi, I'm Ury! My brother and a close friend inspired me to turn my creativity into something that helps others. I love how words and visuals can make someone stop scrolling and actually pay attention.</p>
+                <p>I'm skilled in <strong>CapCut, Canva, and PowerPoint</strong> — no near-missed imports, no awkward formatting. My memorization skills are scary good, which means I pick up your brand voice fast and remember the little details that matter.</p>
+                <p>I work with <strong>passion, consistency, and integrity</strong>. Currently studying Industrial Chemistry at EARIST while building my creative career.</p>
+                <div class="skills-list">
+                    <span class="skill-tag">CapCut</span>
+                    <span class="skill-tag">Canva</span>
+                    <span class="skill-tag">PowerPoint</span>
+                    <span class="skill-tag">Video Editing</span>
+                    <span class="skill-tag">Email Management</span>
+                    <span class="skill-tag">Content Creation</span>
+                    <span class="skill-tag">Fast Learner</span>
+                    <span class="skill-tag">Creative</span>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="17747.png" alt="Urydessy La Monjes Portrait">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-header">
+            <h2>Services</h2>
+            <p>Helping you create content that stands out.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎬</div>
+                <h3>Content Cleanup</h3>
+                <p>Video editing & thumbnails that make your content pop. Perfect for YouTubers who need polished uploads.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Social Refresh</h3>
+                <p>Graphics & presentations that tell your story beautifully. Canva designs and PowerPoint decks.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✉️</div>
+                <h3>Inbox & Outreach</h3>
+                <p>Email and customer service that sounds like you. Professional yet personal communication.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-header">
+            <h2>Portfolio</h2>
+            <p>A showcase of my creative work</p>
+        </div>
+
+        <div class="portfolio-tabs">
+            <button class="tab-btn active" onclick="filterPortfolio('all')">All</button>
+            <button class="tab-btn" onclick="filterPortfolio('video')">Video Editing</button>
+            <button class="tab-btn" onclick="filterPortfolio('design')">Graphic Design</button>
+            <button class="tab-btn" onclick="filterPortfolio('ppt')">Presentations</button>
+            <button class="tab-btn" onclick="filterPortfolio('thumb')">Thumbnails</button>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Video Editing -->
+            <div class="portfolio-item" data-category="video">
+                <img src="17550.png" alt="Natural Pigment Fabric Dyeing - Video Editing">
+                <div class="portfolio-overlay">
+                    <h4>Industrial Chemistry Student</h4>
+                    <p>CapCut Video Editing</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="video">
+                <img src="17549.jpg" alt="Textile Lab Bleaching">
+                <div class="portfolio-overlay">
+                    <h4>Textile Lab Bleaching</h4>
+                    <p>Video Content</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="video">
+                <img src="17547.jpg" alt="Natural Pigment Extraction">
+                <div class="portfolio-overlay">
+                    <h4>Natural Pigment Extraction</h4>
+                    <p>Video Content</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="video">
+                <img src="17546.jpg" alt="Fabric Dyeing Process">
+                <div class="portfolio-overlay">
+                    <h4>Fabric Dyeing Process</h4>
+                    <p>CapCut Editing</p>
+                </div>
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="portfolio-item" data-category="thumb">
+                <img src="17540.png" alt="YouTube Thumbnail - The Reality">
+                <div class="portfolio-overlay">
+                    <h4>"The Reality" Thumbnail</h4>
+                    <p>YouTube Thumbnail Design</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="thumb">
+                <img src="17539.png" alt="YouTube Thumbnail - Tips">
+                <div class="portfolio-overlay">
+                    <h4>"Tips & Explanation" Thumbnail</h4>
+                    <p>YouTube Thumbnail Design</p>
+                </div>
+            </div>
+
+            <!-- Graphic Design -->
+            <div class="portfolio-item" data-category="design">
+                <img src="17536.png" alt="Academic Profile - Retro Game Style">
+                <div class="portfolio-overlay">
+                    <h4>Academic Profile Card</h4>
+                    <p>Retro Game Style Design</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="design">
+                <img src="17537.png" alt="Investigator Style Profile">
+                <div class="portfolio-overlay">
+                    <h4>Investigator Profile</h4>
+                    <p>Detective/Noir Style Design</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="design">
+                <img src="17538.png" alt="Academic Achiever - Classical Style">
+                <div class="portfolio-overlay">
+                    <h4>Academic Achiever</h4>
+                    <p>Classical/Greek Style Design</p>
+                </div>
+            </div>
+
+            <!-- Presentations -->
+            <div class="portfolio-item" data-category="ppt">
+                <img src="17541.png" alt="Color Perception Presentation">
+                <div class="portfolio-overlay">
+                    <h4>Color Perception & Measurement</h4>
+                    <p>PowerPoint Presentation (10 slides)</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="ppt">
+                <img src="17542.png" alt="Presentation Slides 11-12">
+                <div class="portfolio-overlay">
+                    <h4>Color Theory - Daily Life</h4>
+                    <p>Presentation Design</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="ppt">
+                <img src="17532.png" alt="Letter of Welcome Presentation">
+                <div class="portfolio-overlay">
+                    <h4>Letter of Welcome Guide</h4>
+                    <p>Comprehensive PPT (14 slides)</p>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="ppt">
+                <img src="17533.png" alt="Welcome Letter Slides 11-14">
+                <div class="portfolio-overlay">
+                    <h4>Common Mistakes & Checklist</h4>
+                    <p>Presentation Design</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Ready to Hand Off the Busywork?</h2>
+        <p>I'm taking on 2–3 new clients who need creative support. No pressure, no corporate stiffness — just a friendly chat to see if we're a good fit.</p>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/_ryudesign_?igsh=MWF1ejU0NWoybGVyaQ==" target="_blank" class="social-btn instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                Follow on Instagram
+            </a>
+            <a href="mailto:lamonjesury2004@gmail.com" class="social-btn email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Send Me an Email
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with <span class="heart">❤</span> by Urydessy La Monjes</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">© 2024 — All rights reserved</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Portfolio Filter
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .portfolio-item, .about-grid').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
