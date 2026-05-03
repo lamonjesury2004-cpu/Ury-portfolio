@@ -106,7 +106,7 @@ This is the magic step that turns your repo into a live website!
 After a few minutes, your website will be available at:
 
 ```
-https://yourusername.github.io/ury-portfolio
+(https://lamonjesury2004-cpu.github.io/Ury-portfolio/)
 ```
 
 Replace `yourusername` with your actual GitHub username.
